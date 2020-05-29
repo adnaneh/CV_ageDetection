@@ -55,7 +55,7 @@ def get_shape(img):
 #        filename = 'C:/Users/adnane/Desktop/Visord/Dataset/S01-34-MAX_Dm-Kr walking No 182.lif - overview embryo1.tif'
         th = 10
         mask = np.where(img<th)
-        plt.imshow(img)
+        #plt.imshow(img)
         img[mask]=0
         img = cv2.medianBlur(img,51)
 #        plt.imshow(img)
@@ -80,8 +80,8 @@ def reshape(img,img2,mask,standard_mask):
     #print(img.shape)
     #print(mask.shape)
     #print(standard_mask.shape)
-    plt.imshow(mask)
-    plt.show()
+    #plt.imshow(mask)
+    #plt.show()
     for i,row in enumerate(standard_mask):
         standard_left,standard_right = getleftright(standard_mask[i])
         mask_left, mask_right = getleftright(mask[i])
@@ -102,8 +102,8 @@ def reshape2(img,img2,mask,standard_mask):
     #print(img.shape)
     #print(mask.shape)
     #print(standard_mask.shape)
-    plt.imshow(mask)
-    plt.show()
+    #plt.imshow(mask)
+    #plt.show()
     for i in range((img.shape)[1]):
         standard_down,standard_up = getupdown(standard_mask[:,i])
         mask_down, mask_up = getupdown(mask[:,i])
@@ -224,7 +224,7 @@ def preprocessImages():
     filepath = "./Dataset/"
     savepath3 = "./Embryos/"
     savepath = "./GeneExpression/"
-    #savepath2 = "./Rectangles/"
+    savepath2 = "./Rectangles/"
     filenames = load_filenames(filepath)
     
     imgs = cv2.imreadmulti(filepath +filenames[0])
@@ -234,9 +234,9 @@ def preprocessImages():
     mask = cv2.resize(mask, (2048, 1024), interpolation=cv2.INTER_CUBIC)
     for filename in tqdm(filenames):
         img2save = preprocessImage(filepath + filename,mask)
-        #cv2.imwrite(savepath+filename,img2save[0])
-        #cv2.imwrite(savepath2+filename,img2save[1])
-        #cv2.imwrite(savepath3+filename,img2save[1])
+        cv2.imwrite(savepath+filename,img2save[0])
+        cv2.imwrite(savepath2+filename,img2save[1])
+        cv2.imwrite(savepath3+filename,img2save[1])
         
 if __name__ == "__main__":
     preprocessImages()

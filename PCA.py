@@ -222,7 +222,7 @@ def getConfusion(x,y,num = 1):
     return M
 def initialization():
     print("##############Start pre-process############")
-    #preprocessImages()
+    preprocessImages()
     print("##############Finish pre-process############")
     #filepath = "./Dataset/"
     filepath = "./GeneExpression/"
@@ -259,7 +259,7 @@ def getPrecentage(M):
 
 
 if __name__ == "__main__":
-    #initialization()
+    initialization()
     x,y = loadFeatures()
     M = getConfusion(x,y,num=300)
     A = getPrecentage(M)

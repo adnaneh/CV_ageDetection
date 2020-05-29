@@ -8,7 +8,6 @@ Created on Thu Apr 16 17:17:27 2020
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-
 from cv2 import adaptiveThreshold
 
 def load_image(filename):
@@ -88,84 +87,4 @@ def cell_counter(filename):
     
 if __name__ == "__main__":
     filename = './Dataset/S03-19-MAX_Dm-Kr walking No 179.lif - overview.tif'
-    calculateCells(filename)
-"""
-img2 = median [600:800, 600:800]
-plt.imshow(img2)
-"""
-
-#import time
-#ts = time.time()
-#num = markers.max()
-#N = 10
-#
-### If the count of pixels less than a threshold, then set pixels to `0`.
-#for i in range(1, num+1):
-#    pts =  np.where(markers == i)
-#    
-#    if len(pts[0]) < N:
-#        print(len(pts[0]))
-#        img[pts] = 0
-#
-#print("Time passed: {:.3f} ms".format(1000*(time.time()-ts)))
-
-
-
-"""
-
-img = img2
-num_labels, labels_im = cv2.connectedComponents(img)
-
-def imshow_components(labels):
-    # Map component labels to hue val
-    label_hue = np.uint8(179*labels/np.max(labels))
-    blank_ch = 255*np.ones_like(label_hue)
-    labeled_img = cv2.merge([label_hue, blank_ch, blank_ch])
-
-    # cvt to BGR for display
-    labeled_img = cv2.cvtColor(labeled_img, cv2.COLOR_HSV2BGR)
-
-    # set bg label to black
-    labeled_img[label_hue==0] = 0
-    
-    cv2.imshow('labeled.png', labeled_img)
-    cv2.waitKey()
-    return(labeled_img)
-
-res = imshow_components(labels_im)
-plt.imshow(res)
-
-"""
-
-"""
-from skimage import measure
-from skimage import filters
-import matplotlib.pyplot as plt
-import numpy as np
-
-n = 12
-l = 256
-np.random.seed(1)
-im = np.zeros((l, l))
-points = l * np.random.random((2, n ** 2))
-im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
-im = img
-blobs = im > 0.7 * im.mean()
-
-all_labels = measure.label(blobs)
-blobs_labels = measure.label(blobs, background=0)
-
-plt.figure(figsize=(9, 3.5))
-plt.subplot(131)
-plt.imshow(blobs, cmap='gray')
-plt.axis('off')
-plt.subplot(132)
-plt.imshow(all_labels, cmap='nipy_spectral')
-plt.axis('off')
-plt.subplot(133)
-plt.imshow(blobs_labels, cmap='nipy_spectral')
-plt.axis('off')
-
-plt.tight_layout()
-plt.show()
-"""
+    print("number of cells:" + str(cell_counter(filename)))
